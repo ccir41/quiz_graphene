@@ -1,0 +1,273 @@
+query getCategories {
+  categories {
+    id
+    name
+  }
+}
+
+query getCategory {
+  category(id: 1) {
+    id
+    name
+  }
+}
+
+mutation createCategory {
+  createCategory (input: {
+    name: "Django"
+  }) {
+    ok
+    category {
+      id
+      name
+    }
+  }
+}
+
+mutation updateCategory {
+  updateCategory(id: 1, input: {
+    name: "django"
+  }) {
+    ok
+    category {
+      id
+      name
+    }
+  }
+}
+
+
+mutation deleteCategory {
+  deleteCategory (id: 1) {
+    ok
+  }
+}
+
+
+
+mutation createQuestion {
+  createQuestion (input: {
+    name: "Which one of the following is a latest version of django?",
+    category: 1,
+    options: [
+      {
+        name: "1.11",
+        isAnswer: false
+      },
+      {
+        name: "2.2",
+        isAnswer: false
+      },
+      {
+        name: "2.2.7",
+        isAnswer: false
+      },
+      {
+        name: "3.2",
+        isAnswer: true
+      }
+    ]
+  }) {
+    ok
+    question {
+      id
+      name
+      category {
+        id
+        name
+      }
+      options {
+        id
+        name
+        isAnswer
+      }
+    }
+  }
+}
+
+mutation updateQuestion {
+  updateQuestion(id: 5, input: {
+    name: "Which one of the following is not a data type in python3.6?"
+    category: 2,
+    options: [
+      {
+        id: 5,
+        name: "Int",
+        isAnswer: false
+      },
+      {
+        id: 6,
+        name: "Float",
+        isAnswer: false
+      },
+      {
+        id: 7,
+        name: "List",
+        isAnswer: false
+      },
+      {
+        id: 8,
+        name: "BigFloat",
+        isAnswer: true
+      }
+    ]
+  }) {
+    ok
+    question {
+      id
+      name
+      category {
+        id
+        name
+      }
+      options {
+        id
+        name
+        isAnswer
+      }
+    }
+  }
+}
+
+
+query getquestions {
+  questions {
+    id
+    name
+    category {
+      id
+      name
+    }
+    options {
+      id
+      name
+      isAnswer
+    }
+  }
+}
+
+
+query getQuestion {
+  question(id: 5) {
+    id
+    name
+    category {
+      id
+      name
+    }
+    options {
+      id
+      name
+      isAnswer
+    }
+  }
+}
+
+
+mutation deleteQuestion {
+  deleteQuestion (id: 6) {
+    ok
+  }
+}
+
+
+query getQuizQuestions {
+  questions(categoryId: 1){
+    id
+    name
+    category {
+      id
+      name
+    }
+    options {
+      id
+      name
+      isAnswer
+    }
+  }
+}
+
+mutation createOption {
+  createOption(input: {
+    name: "2.7",
+    question: 3,
+    isAnswer: false
+  }) {
+    ok
+    option {
+      id
+      name
+      isAnswer
+      question {
+        id
+        name
+        category {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+query getOption {
+  option(id: 1) {
+    id
+    name
+    isAnswer
+    question {
+      id
+      name
+      category {
+        id
+        name
+      }
+    }
+  }
+}
+
+
+mutation deleteOption {
+  deleteOption (id: 7) {
+    ok
+  }
+}
+
+query getOptions {
+  options(questionId: 3) {
+    id
+    name
+    question {
+      id
+      name
+      category {
+        id
+        name
+      }
+    }
+  }
+}
+
+
+mutation updateOption {
+  updateOption(id: 2, input: {
+    name: "3.6.9"
+    isAnswer: false
+    question: 3
+  }) {
+    ok
+    option {
+      id
+      name
+      question {
+        id
+        name
+        category {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
